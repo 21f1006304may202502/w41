@@ -23,10 +23,11 @@ jobs:
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "test output" > report.md
+          touch report.md
+          echo "test output" >> report.md
           echo "\`\`\`" >> report.md
           cat test_output.txt >> report.md
-          echo "\`\`\`" > report.md
+          echo "\`\`\`" >> report.md
           echo "metrics from training" >> report.md
           cat metrics.csv >> report.md
           cml comment create --publish report.md
