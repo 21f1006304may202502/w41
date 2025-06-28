@@ -11,7 +11,7 @@ import joblib
 data = pd.read_csv("iris.csv")
 data.head(5)
 
-train,test = train_test_split(data,test_size=0.3,stratify=data['species'],random_state=1)
+train,test = train_test_split(data,test_size=0.4,stratify=data['species'],random_state=42)
 X_train = train[['sepal_length','sepal_width','petal_length','petal_width']]
 y_train = train.species
 X_test = test[['sepal_length','sepal_width','petal_length','petal_width']]
@@ -24,6 +24,11 @@ accuracy = metrics.accuracy_score(y_test,prediction)
 precision = metrics.precision_score(y_test,prediction,average='macro')
 recall = metrics.recall_score(y_test,prediction,average='macro')
 f1 = metrics.f1_score(y_test,prediction,average='macro')
+print("Accuracy: ",accuracy)
+print("Precision: ",precision)
+print("Recall: ",recall)
+print("F1: ",f1)
+
 metrics_df = pd.DataFrame({
     'Metric' : ['Accuracy','Precision','Recall','F1'],
     'Score' : [accuracy,precision,recall,f1]
