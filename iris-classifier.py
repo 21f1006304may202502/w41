@@ -11,7 +11,7 @@ import joblib
 data = pd.read_csv("iris.csv")
 data.head(5)
 
-train,test = train_test_split(data,test_size=0.4,stratify=data['species'],random_state=42)
+train,test = train_test_split(data,test_size=0.4,stratify=data['species'],random_state=1)
 X_train = train[['sepal_length','sepal_width','petal_length','petal_width']]
 y_train = train.species
 X_test = test[['sepal_length','sepal_width','petal_length','petal_width']]
