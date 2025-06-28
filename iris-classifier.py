@@ -20,6 +20,14 @@ y_test = test.species
 mod_dt = DecisionTreeClassifier(max_depth=3,random_state=1)
 mod_dt.fit(X_train,y_train)
 prediction = mod_dt.predict(X_test)
-print('The accuracy of the Decision Tree is',"{:.3f}".format(metrics.accuracy_score(prediction,y_test)))
+accuracy = metrics.accuracy_score(y_test,prediction)
+precision = metrics.precision_score(y_test,prediction,average='macro')
+recall = metrics.recall_score(y_test,prediction,average='macro')
+f1 = metrics.f1_score(y_test,prediction,average='macro')
+metrics_df = pd.DataFrame({
+    'Metric' : ['Accuracy','Precision','Recall','F1'],
+    'Score' : [accuracy,precision,recall,f1]
+    })
+metrics_df.to_csv('metrics.csv',index=False)
 
 joblib.dump(mod_dt, "model.joblib")
